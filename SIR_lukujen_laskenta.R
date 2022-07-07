@@ -12,6 +12,21 @@ colnames(dorg_slapnea)[3:18] <- paste0(colnames(dorg_slapnea)[3:18], "_ref")
 dorg <- merge(dorg_kaikki, dorg_slapnea, by = c("SUKUP", "ika"))
 
 ## Laskenta ----
+# ## TODO tämän voisi myös tehdä funktioilla, esim. niin että kaksi datasettiä jotka linkataan
+# funk1 <- function(murt, murt_ref, n, n_ref){
+#   name=deparse(substitute(murt))
+#   n_eiref = n - n_ref
+#   murt_eiref = murt - murt_ref
+#   murt_eiref_ilmaantuvuus = murt_eiref/n_eiref*100000
+#   murt_odotettu = murt_eiref_ilmaantuvuus/n_ref*100000
+#   murt_SIR = murt_ref / murt_odotettu
+#   murt_SIR_UCI = ifelse(murt_ref > 0, (qchisq(1-0.975, 2 * (murt_ref+1)) / 2) /murt_odotettu, qchisq(0.025,2)/2 / murt_odotettu)
+#   list_results <- list(c(murt_eiref, murt_eiref_ilmaantuvuus, murt_odotettu, murt_SIR, murt_SIR_UCI))
+#   names(list_results) <- name
+#   return(list_results)
+# }
+# funk1(dorg$murt10, dorg$murt10_ref, dorg$n, dorg$n_ref)
+
 ## TODO tarkista laskennan tulokset
 d <- dorg %>% 
   mutate(
